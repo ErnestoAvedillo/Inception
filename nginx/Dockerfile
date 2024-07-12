@@ -1,12 +1,14 @@
-FROM ubuntu
+FROM debian:10-slim
 
-RUN apt update -y 
-RUN apt install nginx -y
+RUN apt-get update -y 
+RUN apt-get install nginx openssl -y
 
-COPY ../web/* /usr/share/nginx/html
+RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/eavedill.42.fr.key -out /etc/nginx/eavedill.42.fr.crt -subj "/C=/ST=/L=/O=/OU=/CN=/UID="
 
-RUN ls /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/nginx.conf
 
-EXPOSE 443
+COPY ./web/* /usr/share/nginx/html/
+
+EXPOSE 443 
 
 CMD ["nginx", "-g", "daemon off;"]
