@@ -1,5 +1,4 @@
-version: "3.0"
->>>>>>> 60f0ff8 (reorder. start nginx)
+version: ''
 networks:
   inception:
     name: inception
@@ -60,4 +59,4 @@ volumes:
     driver_opts:
       device: ./web/database
       o: bind
-         type: none      
+      type: none      
