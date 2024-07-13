@@ -6,7 +6,7 @@ RUN wget https://wordpress.org/latest.tar.gz
 
 RUN tar -xvf latest.tar.gz
 
-#COPY ./wordpress/wp-config.php /wordpress/wp-config.php
+COPY config/wp-config.php /srv/www/wordpress/wp-config.php
 
-#COPY ./wordpress/wordpress.conf /etc/nginx/sites-available/wordpress.conf
+COPY config/wordpress.conf /etc/nginx/sites-available/wordpress.conf
 

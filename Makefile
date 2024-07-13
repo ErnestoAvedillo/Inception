@@ -5,16 +5,16 @@ CONTAINERS= $$(docker ps -aq)
 VOLUMES= $$(docker volume ls -q)
 
 up:
-	docker-compose -f ./docker-compose.yaml up -d --build
+	docker-compose -f ./srcs/docker-compose.yaml up -d --build
 
 down:
-	docker-compose -f docker-compose.yaml down
+	docker-compose -f ./srcs/docker-compose.yaml down
 
 start:
-	docker-compose -f docker-compose.yaml start
+	docker-compose -f ./srcs/docker-compose.yaml start
 
 stop:
-	docker-compose -f docker-compose.yaml stop
+	docker-compose -f ./srcs/docker-compose.yaml stop
 
 status : 
 	@echo "-------docker ps---------"
@@ -24,9 +24,10 @@ status :
 	@echo "-------volumes---------"
 	@docker volume ls
 
+rm-all: rm rmi rmv
+
 rm:
 	docker rm $(CONTAINERS) -f
-
 rmi:
 	docker rmi $(IMAGES) -f
 rmv:
@@ -54,3 +55,4 @@ help:
 	@echo "rmi         :Remove all images"
 	@echo "init-docker :start docker service"
 	@echo "print       :Print images ID"
+	@echo "debug       :Docker exec -it (container) /bin/bash"
