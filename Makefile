@@ -16,14 +16,14 @@ stop:
 
 status : 
 	@echo "-------docker ps---------"
-	@docker ps
+	@docker ps -aq
 	@echo "-------images---------"
-	@docker images 
+	@docker images -aq
 	@echo "-------volumes---------"
 	@docker volume ls
 
 rm:
-	@docker volume rm $(docker ps -aq)
+	@docker rm $(docker ps -aq)
 
 rmi:
 	@docker rmi $(IMAGES) -f
@@ -34,6 +34,9 @@ init_docker:
 
 print:
 	@echo $(IMAGES)
+
+debug:
+	docker exec -it $(shell docker ps -aq) /bin/bash
 
 help:
 	@echo "Possible targets"
