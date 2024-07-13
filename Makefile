@@ -1,6 +1,8 @@
 all:	up
 
-IMAGES = $$(docker images -q)
+IMAGES = $$(docker images -aq)
+CONTAINERS= $$(docker ps -aq)
+VOLUMES= $$(docker volume ls -q)
 
 up:
 	docker-compose -f ./docker-compose.yaml up -d --build
@@ -16,24 +18,27 @@ stop:
 
 status : 
 	@echo "-------docker ps---------"
-	@docker ps -aq
+	@docker ps -a
 	@echo "-------images---------"
-	@docker images -aq
+	@docker images -a
 	@echo "-------volumes---------"
 	@docker volume ls
 
 rm:
-	@docker rm $(docker ps -aq)
+	docker rm $(CONTAINERS) -f
 
 rmi:
-	@docker rmi $(IMAGES) -f
-
+	docker rmi $(IMAGES) -f
+rmv:
+	docker volume rm $(VOLUMES) -f
 init_docker:
 	@sudo systemctl start docker
 	@sudo systemctl start docker-compose
 
 print:
-	@echo $(IMAGES)
+	@echo "Variable IMAGES= "$(IMAGES)
+	@echo "Variable CONTAINERS =" $(CONTAINERS)
+	@echo "Variable VOLUMES =" $(VOLUMES)
 
 debug:
 	docker exec -it $(shell docker ps -aq) /bin/bash
