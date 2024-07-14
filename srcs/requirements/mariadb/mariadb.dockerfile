@@ -1,6 +1,10 @@
 FROM debian:10-slim
 
-ARG MARIADB_PATH
+ARG MARIADB_PATH \
+    MARIADB_NAME \
+    MARIADB_USER \
+    MARIADB_USER_PASSWORD \
+    MARUADB_HOST
 
 RUN apt-get update -y && apt-get install mariadb-server -y
 

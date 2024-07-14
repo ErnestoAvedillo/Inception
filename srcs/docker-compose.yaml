@@ -6,6 +6,7 @@ services:
       args:
         NGINX_PATH: $NGINX_PATH
         WP_PATH: $WP_PATH
+        MARIADB_PATH: $MARIADB_PATH
       context: $DOCKER_NGINX_PATH
       dockerfile: nginx.dockerfile
     restart: always
@@ -23,6 +24,13 @@ services:
     build:
       args:
         WP_PATH: $WP_PATH
+        WP_ADMIN_USER: $WP_ADMIN_USER
+        WP_ADMIN_PASSWORD: $WP_ADMIN_PASSWORD
+        WP_ADMIN_EMAIL: $WP_ADMIN_EMAIL
+        WP_USER: $WP_USER
+        WP_USER_PASSWORD: $WP_USER_PASSWORD
+        WP_USER_EMAIL: $WP_USER_EMAIL
+        WP_USER_ROLE: $WP_USER_ROLE
       context: $DOCKER_WP_PATH
       dockerfile: wordpress.dockerfile
     restart: always
@@ -38,6 +46,10 @@ services:
     build:
       args:
         MARIADB_PATH: $MARIADB_PATH
+        MARIADB_NAME: $MARIADB_NAME
+        MARIADB_USER: $MARIADB_USER
+        MARIADB_USER_PASSWORD: $MARIADB_USER_PASSWORD
+        MARIADB_HOST: $MARIADB_HOST
       context: $DOCKER_MARIADB_PATH
       dockerfile: mariadb.dockerfile
     restart: always

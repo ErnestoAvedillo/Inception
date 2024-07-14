@@ -1,6 +1,13 @@
 FROM debian:10-slim
 
-ARG WP_PATH
+ARG WP_PATH \
+    WP_ADMIN_USER \
+    WP_ADMIN_PASSWORD \
+    WP_ADMIN_EMAIL \
+    WP_USER \
+    WP_USER_PASSWORD \
+    WP_USER_EMAIL \
+    WP_USER_ROLE
 
 RUN apt-get update -y && apt-get install -y php-mysql php-fpm mariadb-server mariadb-client wget tar
 
