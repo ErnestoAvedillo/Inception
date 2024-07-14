@@ -25,13 +25,14 @@ stat:
 	@docker volume ls
 
 rma: rm rmi rmv
-
 rm:
 	docker rm $(CONTAINERS) -f
 rmi:
 	docker rmi $(IMAGES) -f
 rmv:
 	docker volume rm $(VOLUMES) -f
+	rm -rfd $(HOME)/data/wordpress
+	rm -rfd $(HOME)/data/mariadb
 init_docker:
 	@sudo systemctl start docker
 	@sudo systemctl start docker-compose
