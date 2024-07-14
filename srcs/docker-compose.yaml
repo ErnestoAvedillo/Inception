@@ -21,7 +21,7 @@ services:
   wordpress:
     container_name: wordpress
     image: "eavedill_wordpress"
-    environmnent:
+    environment:
       - WP_PATH=$WP_PATH
       - WP_ADMIN_USER=$WP_ADMIN_USER
       - WP_ADMIN_PASSWORD=$WP_ADMIN_PASSWORD
