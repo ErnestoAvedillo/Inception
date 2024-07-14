@@ -7,6 +7,8 @@ services:
       - WP_PATH=$WP_PATH
       - MARIADB_PATH=$MARIADB_PATH
     build:
+      args:
+        - NGINX_PATH=$NGINX_PATH
       context: $DOCKER_NGINX_PATH
       dockerfile: nginx.dockerfile
     restart: always
