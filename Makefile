@@ -5,7 +5,7 @@ CONTAINERS= $$(docker ps -aq)
 VOLUMES= $$(docker volume ls -q)
 
 up:
-	docker-compose -f ./srcs/docker-compose.yaml --remove-orphans --env-file ./srcs/var.env up -d --build
+	docker-compose -f ./srcs/docker-compose.yaml --env-file ./srcs/var.env up -d --build
 
 down:
 	docker-compose -f ./srcs/docker-compose.yaml --env-file ./srcs/var.env down
