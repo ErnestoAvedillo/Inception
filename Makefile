@@ -5,18 +5,18 @@ CONTAINERS= $$(docker ps -aq)
 VOLUMES= $$(docker volume ls -q)
 
 up:
-	docker-compose -f ./srcs/docker-compose.yaml up -d --build
+	docker-compose -f ./srcs/docker-compose.yaml --env-file ./srcs/var.env up -d --build
 
 down:
-	docker-compose -f ./srcs/docker-compose.yaml down
+	docker-compose -f ./srcs/docker-compose.yaml --env-file ./srcs/var.env down
 
 start:
-	docker-compose -f ./srcs/docker-compose.yaml start
+	docker-compose -f ./srcs/docker-compose.yaml --env-file ./srcs/var.env start
 
 stop:
-	docker-compose -f ./srcs/docker-compose.yaml stop
+	docker-compose -f ./srcs/docker-compose.yaml --env-file ./srcs/var.env stop
 
-status : 
+stat: 
 	@echo "-------docker ps---------"
 	@docker ps -a
 	@echo "-------images---------"
