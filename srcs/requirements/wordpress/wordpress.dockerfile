@@ -17,7 +17,7 @@ RUN tar -xvf latest.tar.gz -C ${WP_PATH}
 RUN echo "ADMIN USER: " ${WP_ADMIN_USER}
 RUN echo "WP_PATH: " ${WP_PATH}
 
-RUN chown -R ${WP_ADMIN_USER} ${WP_PATH}
+RUN chmod -R 777 ${WP_PATH} && chown -R ${WP_ADMIN_USER} ${WP_PATH}
 
 COPY config/wordpress.conf /etc/nginx/sites-available/wordpress.conf
 
