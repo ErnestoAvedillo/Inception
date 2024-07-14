@@ -21,16 +21,21 @@ services:
   wordpress:
     container_name: wordpress
     image: "eavedill_wordpress"
+    environmnent:
+      - WP_PATH=$WP_PATH
+      - WP_ADMIN_USER=$WP_ADMIN_USER
+      - WP_ADMIN_PASSWORD=$WP_ADMIN_PASSWORD
+      - WP_ADMIN_EMAIL=$WP_ADMIN_EMAIL
+      - WP_USER=$WP_USER
+      - WP_USER_PASSWORD=$WP_USER_PASSWORD
+      - WP_USER_EMAIL=$WP_USER_EMAIL
+      - WP_USER_ROLE=$WP_USER_ROLE
+      - MARIADB_PATH=$MARIADB_PATH
+      - MARIADB_NAME=$MARIADB_NAME
+      - MARIADB_USER=$MARIADB_USER
+      - MARIADB_USER_PASSWORD=$MARIADB_USER_PASSWORD
+      - MARIADB_HOST=$MARIADB_HOST
     build:
-      args:
-        WP_PATH: $WP_PATH
-        WP_ADMIN_USER: $WP_ADMIN_USER
-        WP_ADMIN_PASSWORD: $WP_ADMIN_PASSWORD
-        WP_ADMIN_EMAIL: $WP_ADMIN_EMAIL
-        WP_USER: $WP_USER
-        WP_USER_PASSWORD: $WP_USER_PASSWORD
-        WP_USER_EMAIL: $WP_USER_EMAIL
-        WP_USER_ROLE: $WP_USER_ROLE
       context: $DOCKER_WP_PATH
       dockerfile: wordpress.dockerfile
     restart: always
@@ -43,13 +48,13 @@ services:
   mariadb:
     container_name: mariadb
     image: "eavedill_mariadb"
+    environment:
+      - MARIADB_PATH=$MARIADB_PATH
+      - MARIADB_NAME=$MARIADB_NAME
+      - MARIADB_USER=$MARIADB_USER
+      - MARIADB_USER_PASSWORD=$MARIADB_USER_PASSWORD
+      - MARIADB_HOST=$MARIADB_HOST
     build:
-      args:
-        MARIADB_PATH: $MARIADB_PATH
-        MARIADB_NAME: $MARIADB_NAME
-        MARIADB_USER: $MARIADB_USER
-        MARIADB_USER_PASSWORD: $MARIADB_USER_PASSWORD
-        MARIADB_HOST: $MARIADB_HOST
       context: $DOCKER_MARIADB_PATH
       dockerfile: mariadb.dockerfile
     restart: always
