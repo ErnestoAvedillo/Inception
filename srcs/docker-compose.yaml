@@ -3,6 +3,9 @@ services:
     container_name: nginx
     image: "eavedill_nginx"
     build:
+      args:
+        NGINX_PATH: $NGINX_PATH
+        WP_PATH: $WP_PATH
       context: $DOCKER_NGINX_PATH
       dockerfile: nginx.dockerfile
     restart: always

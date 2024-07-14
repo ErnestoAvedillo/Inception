@@ -24,7 +24,7 @@ stat:
 	@echo "-------volumes---------"
 	@docker volume ls
 
-rm-all: rm rmi rmv
+rma: rm rmi rmv
 
 rm:
 	docker rm $(CONTAINERS) -f
@@ -40,6 +40,7 @@ print:
 	@echo "Variable IMAGES= "$(IMAGES)
 	@echo "Variable CONTAINERS =" $(CONTAINERS)
 	@echo "Variable VOLUMES =" $(VOLUMES)
+	#$(foreach CONTAINER,$(CONTAINERS),docker logs $(CONTAINER);)
 
 debug:
 	docker exec -it $(shell docker ps -aq) /bin/bash
