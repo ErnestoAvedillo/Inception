@@ -1,6 +1,6 @@
 FROM debian:10-slim
 
-ARG WP_PATH
+ARG WP_PATH WP_ADMIN_USER
 
 RUN apt-get update -y && apt-get install -y php-mysql php-fpm mariadb-server mariadb-client wget tar curl
 
@@ -14,7 +14,7 @@ RUN wget https://wordpress.org/latest.tar.gz
 RUN mkdir -p ${WP_PATH}
 RUN tar -xvf latest.tar.gz -C ${WP_PATH}
 
-RUN chown -R www-data:www-data ${WP_PATH}
+RUN chown -R ${WP_ADMIN_USER} ${WP_PATH}
 
 COPY config/wordpress.conf /etc/nginx/sites-available/wordpress.conf
 

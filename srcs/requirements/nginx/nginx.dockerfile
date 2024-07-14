@@ -1,7 +1,7 @@
 #docker buildx build --help
 FROM debian:10-slim
 
-ARG NGINX_PATH
+ARG WP_PATH 
 
 RUN apt-get update -y 
 RUN apt-get install nginx openssl -y
