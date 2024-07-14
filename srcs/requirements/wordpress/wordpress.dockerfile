@@ -4,7 +4,7 @@ RUN apt-get update -y && apt-get install -y php-mysql php-fpm mariadb-server mar
 
 RUN wget https://wordpress.org/latest.tar.gz
 
-RUN echo "El path es: "$PATH
+RUN echo "El path es: "${PATH}
 
 RUN mkdir -p $WP_PATH
 
