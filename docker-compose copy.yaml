@@ -26,6 +26,7 @@ services:
       - mariadb
     ports:
       - 9000:80
+
     volumes:
       - wordpress:/var/www/html/
   mariadb:
