@@ -36,6 +36,8 @@ services:
       - MARIADB_USER_PASSWORD=$MARIADB_USER_PASSWORD
       - MARIADB_HOST=$MARIADB_HOST
     build:
+      args:
+        - WP_PATH=$WP_PATH
       context: $DOCKER_WP_PATH
       dockerfile: wordpress.dockerfile
     restart: always
