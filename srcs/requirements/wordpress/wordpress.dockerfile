@@ -2,7 +2,7 @@ FROM debian:10-slim
 
 ARG WP_PATH
 
-RUN apt-get update -y && apt-get install -y php-mysql php-fpm mariadb-server mariadb-client wget tar
+RUN apt-get update -y && apt-get install -y php-mysql php-fpm mariadb-server mariadb-client wget tar curl
 
 WORKDIR /tmp/
 
