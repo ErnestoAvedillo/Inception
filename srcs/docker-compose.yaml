@@ -15,7 +15,7 @@ services:
     ports:
       - 443:443
     volumes:
-      - wordpress:/usr/share/nginx/html
+      - wordpress:$WP_PATH
     depends_on: 
         - wordpress
     networks:
