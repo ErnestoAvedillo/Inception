@@ -14,8 +14,8 @@ RUN wget https://wordpress.org/latest.tar.gz
 RUN mkdir -p ${WP_PATH}
 RUN tar -xvf latest.tar.gz -C ${WP_PATH}
 
-RUN Eecho "ADMIN USER: " ${WP_ADMIN_USER}
-RUN Eecho "WP_PATH: " ${WP_PATH}
+RUN echo "ADMIN USER: " ${WP_ADMIN_USER}
+RUN echo "WP_PATH: " ${WP_PATH}
 
 RUN chown -R ${WP_ADMIN_USER} ${WP_PATH}
 
