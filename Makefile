@@ -24,7 +24,7 @@ stat:
 	@echo "-------volumes---------"
 	@docker volume ls
 
-rma: rm rmi rmv
+rma: stop rm rmi rmv
 rm:
 	docker rm $(CONTAINERS) -f
 rmi:
