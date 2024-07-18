@@ -37,6 +37,7 @@ services:
       - MARIADB_USER=$MARIADB_USER
       - MARIADB_USER_PASSWORD=$MARIADB_USER_PASSWORD
       - MARIADB_HOST=$MARIADB_HOST
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
     build:
       args:
         - WP_PATH=$WP_PATH
@@ -61,7 +62,10 @@ services:
       - MARIADB_USER=$MARIADB_USER
       - MARIADB_USER_PASSWORD=$MARIADB_USER_PASSWORD
       - MARIADB_HOST=$MARIADB_HOST
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
     build:
+      args:
+        - MARIADB_PATH=$MARIADB_PATH
       context: $DOCKER_MARIADB_PATH
       dockerfile: mariadb.dockerfile
     restart: always
