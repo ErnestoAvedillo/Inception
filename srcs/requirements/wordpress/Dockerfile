@@ -31,5 +31,5 @@ COPY config/script.sh /
 
 RUN chmod +x /script.sh
 
-#CMD ["bash","-c", "while true; do sleep 3600; done"]
-ENTRYPOINT ["bash", "/opt/wp_init.sh"]
+CMD ["bash","-c", "while true; do sleep 3600; done"]
+#ENTRYPOINT ["bash", "/opt/wp_init.sh"]
