@@ -43,6 +43,9 @@ init_docker:
 	@sudo systemctl start docker
 	@sudo systemctl start docker-compose
 
+clean:
+	docker system prune -a
+
 print:
 	@echo "Variable IMAGES= "$(IMAGES)
 	@echo "Variable CONTAINERS =" $(CONTAINERS)
