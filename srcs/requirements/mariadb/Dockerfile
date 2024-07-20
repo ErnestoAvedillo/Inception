@@ -24,4 +24,4 @@ EXPOSE 3306
 
 #CMD ["/var/run/mysqld/mariadb_init.sh"]
 
-ENTRYPOINT [ "/bin/sh"]
+ENTRYPOINT [ "bash", "-c", "while true; do sleep 3306; done"]
