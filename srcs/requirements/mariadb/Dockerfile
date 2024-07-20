@@ -22,6 +22,6 @@ RUN chown -R mysql:mysql ${MARIADB_PATH}
 #
 EXPOSE 3306
 
-CMD ["/var/run/mysqld/mariadb_init.sh"]
+#CMD ["/var/run/mysqld/mariadb_init.sh"]
 
-#ENTRYPOINT [ "/bin/sh", "/var/run/mysqld/mariadb_init.sh""]
+ENTRYPOINT [ "/bin/sh"]
