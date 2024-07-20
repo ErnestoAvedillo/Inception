@@ -24,6 +24,7 @@ services:
     image: "eavedill_wordpress"
     environment:
       - WP_PATH=$WP_PATH
+      - WP_TITLE=$WP_TITLE
       - WP_ADMIN_USER=$WP_ADMIN_USER
       - WP_ADMIN_PASSWORD=$WP_ADMIN_PASSWORD
       - WP_ADMIN_EMAIL=$WP_ADMIN_EMAIL
