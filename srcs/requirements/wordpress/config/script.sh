@@ -1,24 +1,14 @@
 #!/bin/bash
 
-
-#sed -i -r "s/db1/$db_name/1"   wp-config.php
-#sed -i -r "s/user/$db_user/1"  wp-config.php
-#sed -i -r "s/pwd/$db_pwd/1"    wp-config.php
-
-wp core install --url=$DOMAIN_NAME/ --title=$WP_TITLE --admin_user=$WP_ADMIN_USR --admin_password=$WP_ADMIN_PWD --admin_email=$WP_ADMIN_EMAIL --skip-email --allow-root
-
-wp user create $WP_USR $WP_EMAIL --role=author --user_pass=$WP_PWD --allow-root
-
-wp theme install astra --activate --allow-root
-
-wp plugin install redis-cache --activate --allow-root
-
-wp plugin update --all --allow-root
- 
-sed -i 's/listen = \/run\/php\/php7.3-fpm.sock/listen = 9000/g' /etc/php/7.3/fpm/pool.d/www.conf
-
-mkdir /run/php
-
-wp redis enable --allow-root
-
+if [ -d ${WP_PATH}"wp-admin" ]; then
+	 echo "WordPress core is already downloaded"
+else
+	echo "WordPress Installing"
+	wp core download  --path="${WP_PATH}" --allow-root
+	wp config create  --path="${WP_PATH}" --dbname="${MARIADB_DB_NAME}" --dbuser="${MARIADB_USER}" --dbpass="${MARIADB_USER_PASSWORD}" --dbhost="${MARIADB_HOST}" --allow-root
+	wp core install   --path="$WP_PATH" --url="${DOMAIN_NAME}" --title="${WP_TITLE}" --admin_user="${WP_ADMIN_USER}" --admin_password="${WP_ADMIN_PASSWORD}"  --admin_email="${WP_ADMIN_EMAIL}" --skip-email --allow-root
+	wp user create    --path="${WP_PATH}" "${WP_USER}" "${WP_USER_EMAIL}" --role="$WP_USER_ROLE" --user_pass="${WP_USER_PASSWORD}" --allow-root
+	wp theme activate twentytwentytwo --path="${WP_PATH}" --allow-root
+fi
 /usr/sbin/php-fpm7.3 -F
+

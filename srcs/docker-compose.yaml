@@ -1,3 +1,5 @@
+version: "3.8"
+
 services:
   nginx:
     container_name: nginx
@@ -10,14 +12,11 @@ services:
       args:
         - NGINX_PATH=$NGINX_PATH
       context: $DOCKER_NGINX_PATH
-      dockerfile: nginx.dockerfile
     restart: always
     ports:
       - 443:443
     volumes:
       - wordpress:$NGINX_PATH
-    depends_on: 
-        - wordpress
     networks:
       - inception
   wordpress:
@@ -41,14 +40,10 @@ services:
     build:
       args:
         - WP_PATH=$WP_PATH
-        - WP_ADMIN_USER=$WP_ADMIN_USER
+#        - WP_ADMIN_USER=$WP_ADMIN_USER
       context: $DOCKER_WP_PATH
-      dockerfile: wordpress.dockerfile
-    restart: always
     ports:
       - 9000:9000
-    depends_on: 
-      - mariadb
     volumes:
       - wordpress:$WP_PATH
     networks:
@@ -67,7 +62,6 @@ services:
       args:
         - MARIADB_PATH=$MARIADB_PATH
       context: $DOCKER_MARIADB_PATH
-      dockerfile: mariadb.dockerfile
     restart: always
     ports:
       - 3306:3306
