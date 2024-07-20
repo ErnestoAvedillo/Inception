@@ -10,13 +10,13 @@ WORKDIR /tmp/
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 
 RUN chmod +x wp-cli.phar
-RUN mv wp-cli.phar /usr/local/bin/wp/
+RUN mv wp-cli.phar /usr/local/bin/wp
 
 #RUN wget https://wordpress.org/latest.tar.gz
 #RUN tar -xvf latest.tar.gz
 
 RUN mkdir -p ${WP_PATH}
-RUN mv ./wordpress/* ${WP_PATH}
+#RUN mv ./wordpress/* ${WP_PATH}
 
 COPY config/wordpress.conf /etc/nginx/sites-available/wordpress.conf
 COPY config/wp-config.php ${WP_PATH}
