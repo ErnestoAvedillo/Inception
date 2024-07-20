@@ -13,11 +13,11 @@ COPY ./config/config.cnf /etc/mysql/mariadb.conf.d/
 #
 COPY ./config/mariadb_init.sh /tmp/
 RUN chmod -R 777 /tmp/mariadb_init.sh 
-RUN chown -R www-data:www-data /tmp/mariadb_init.sh
+RUN chown -R mysql:mysql /tmp/mariadb_init.sh
 
 #
 RUN chmod -R 777 ${MARIADB_PATH} 
-RUN chown -R www-data:www-data ${MARIADB_PATH}
+RUN chown -R mysql:mysql ${MARIADB_PATH}
 #
 EXPOSE 3306
 

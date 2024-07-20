@@ -5,6 +5,7 @@ CONTAINERS= $$(docker ps -aq)
 VOLUMES= $$(docker volume ls -q)
 
 up:
+	@cat srcs/var.env
 	@docker-compose -f ./srcs/docker-compose.yaml --env-file ./srcs/var.env up -d
 	@echo "-------docker ps---------"
 	@docker ps -a
@@ -37,8 +38,8 @@ rmi:
 	docker rmi $(IMAGES) -f
 rmv:
 	docker volume rm $(VOLUMES) -f
-#	rm -rfd $(HOME)/data/wordpress/*
-#	rm -rfd $(HOME)/data/mariadb/*
+	rm -rfd $(HOME)/data/wordpress/*
+	rm -rfd $(HOME)/data/mariadb/*
 init_docker:
 	@sudo systemctl start docker
 	@sudo systemctl start docker-compose

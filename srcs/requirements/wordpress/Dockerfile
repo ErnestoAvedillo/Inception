@@ -23,7 +23,7 @@ COPY config/wp-config.php ${WP_PATH}
 
 WORKDIR ${WP_PATH}
 
-RUN chmod -R 777 ${WP_PATH} && chown -R www-data:www-data ${WP_PATH}
+RUN chmod -R 777 ${WP_PATH} && chown -R mysql:mysql ${WP_PATH}
 
 EXPOSE 9000
 
@@ -31,4 +31,4 @@ COPY config/script.sh /
 
 RUN chmod +x /script.sh
 
-CMD [ "/script.sh"]
+CMD ["bash","-c", "while true; do sleep 3600; done"]
