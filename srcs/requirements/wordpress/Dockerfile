@@ -23,7 +23,7 @@ COPY config/wp-config.php ${WP_PATH}
 
 WORKDIR ${WP_PATH}
 
-RUN chmod -R 777 ${WP_PATH} && chown -R mysql:mysql ${WP_PATH}
+RUN chmod -R 777 ${WP_PATH} && chown -R www-data:www-data ${WP_PATH}
 
 EXPOSE 9000
 

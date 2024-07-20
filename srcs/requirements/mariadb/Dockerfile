@@ -6,8 +6,8 @@ RUN apt-get update -y
 RUN apt-get install mariadb-server -y
 #
 ## Ensure the MariaDB directories exist with proper permissions
-RUN mkdir -p /var/run/mysqld && chown mysql:mysql /var/run/mysqld
-RUN mkdir -p /var/lib/mysql && chown mysql:mysql /var/lib/mysql
+########RUN mkdir -p /var/run/mysqld && chown mysql:mysql /var/run/mysqld && chmod -R 755 /var/run/mysqld
+########RUN mkdir -p /var/lib/mysql && chown mysql:mysql /var/lib/mysql && chmod -R 755 /var/lib/mysql
 #
 COPY ./config/config.cnf /etc/mysql/mariadb.conf.d/
 #
