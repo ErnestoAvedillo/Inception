@@ -5,7 +5,13 @@ CONTAINERS= $$(docker ps -aq)
 VOLUMES= $$(docker volume ls -q)
 
 up:
-	docker-compose -f ./srcs/docker-compose.yaml --env-file ./srcs/var.env up -d --build
+	@docker-compose -f ./srcs/docker-compose.yaml --env-file ./srcs/var.env up -d
+	@echo "-------docker ps---------"
+	@docker ps -a
+	@echo "-------images---------"
+	@docker images -a
+	@echo "-------volumes---------"
+	@docker volume ls
 
 down:
 	docker-compose -f ./srcs/docker-compose.yaml --env-file ./srcs/var.env down
@@ -31,8 +37,8 @@ rmi:
 	docker rmi $(IMAGES) -f
 rmv:
 	docker volume rm $(VOLUMES) -f
-	rm -rfd $(HOME)/data/wordpress
-	rm -rfd $(HOME)/data/mariadb
+#	rm -rfd $(HOME)/data/wordpress/*
+#	rm -rfd $(HOME)/data/mariadb/*
 init_docker:
 	@sudo systemctl start docker
 	@sudo systemctl start docker-compose
@@ -45,7 +51,7 @@ print:
 
 debug:
 	docker exec -it $(shell docker ps -aq) /bin/bash
-
+re : rma up
 help:
 	@echo "Possible targets"
 	@echo "up	   :build and run all services"
@@ -58,3 +64,5 @@ help:
 	@echo "init-docker :start docker service"
 	@echo "print       :Print images ID"
 	@echo "debug       :Docker exec -it (container) /bin/bash"
+
+.PHONY: up down start stop stat rma rm rmi rmv init_docker print debug help re
