@@ -16,6 +16,7 @@ RUN mv wp-cli.phar /usr/local/bin/wp
 #RUN tar -xf latest.tar.gz
 
 RUN mkdir -p ${WP_PATH}
+RUN mkdir -p /run/php
 #RUN mv ./wordpress/* ${WP_PATH}
 
 COPY config/wordpress.conf /etc/nginx/sites-available/wordpress.conf
