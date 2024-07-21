@@ -1,5 +1,5 @@
 #docker buildx build --help
-FROM debian:11-slim
+FROM debian:10-slim
 
 ARG NGINX_PATH
 

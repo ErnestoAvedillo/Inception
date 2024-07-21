@@ -5,18 +5,18 @@ CONTAINERS= $$(docker ps -aq)
 VOLUMES= $$(docker volume ls -q)
 
 up:
-	@mkdir -p $(HOME)/data/wordpress
-	@mkdir -p $(HOME)/data/mariadb
-	@docker-compose -f ./srcs/docker-compose.yaml --env-file ./srcs/var.env up -d --remove-orphans --quiet-pull
+	-@mkdir -p $(HOME)/data/wordpress
+	-@mkdir -p $(HOME)/data/mariadb
+	-@docker-compose -f ./srcs/docker-compose.yaml --env-file ./srcs/var.env up -d --remove-orphans --quiet-pull
 
 down:
-	docker-compose -f ./srcs/docker-compose.yaml --env-file ./srcs/var.env down
+	-@docker-compose -f ./srcs/docker-compose.yaml --env-file ./srcs/var.env down
 
 start:
-	docker-compose -f ./srcs/docker-compose.yaml --env-file ./srcs/var.env start
+	-@docker-compose -f ./srcs/docker-compose.yaml --env-file ./srcs/var.env start
 
 stop:
-	docker-compose -f ./srcs/docker-compose.yaml --env-file ./srcs/var.env stop
+	-@docker-compose -f ./srcs/docker-compose.yaml --env-file ./srcs/var.env stop
 
 stat: 
 	@echo "-------docker ps---------"
@@ -28,32 +28,32 @@ stat:
 
 rma: stop rm rmi rmv
 rm:
-	docker rm $(CONTAINERS) -f
+	-@docker rm $(CONTAINERS) -f
 rmi:
-	docker rmi $(IMAGES) -f
+	-@docker rmi $(IMAGES) -f
 rmv:
-	docker volume rm $(VOLUMES) -f
-	rm -rfd $(HOME)/data/wordpress/*
-	rm -rfd $(HOME)/data/mariadb/*
+	-@docker volume rm $(VOLUMES) -f
+	-@rm -rfd $(HOME)/data/wordpress/*
+	-@rm -rfd $(HOME)/data/mariadb/*
 init_docker:
 	@sudo systemctl start docker
 	@sudo systemctl start docker-compose
 
 clean:
-	docker system prune -a
-mariadb:
-	docker exec -it $$(docker ps |grep mariadb| awk '{print $$1}') /bin/bash
-wordpress:
-	docker exec -it $$(docker ps |grep wordpress| awk '{print $$1}') /bin/bash
+	@docker system prune -a
+
 print:
 	@echo "Variable IMAGES= "$(IMAGES)
 	@echo "Variable CONTAINERS =" $(CONTAINERS)
 	@echo "Variable VOLUMES =" $(VOLUMES)
-	#$(foreach CONTAINER,$(CONTAINERS),docker logs $(CONTAINER);)
 
-debug:
-	docker exec -it $(shell docker ps -aq) /bin/bash
+debmaria:
+	@docker exec -it $$(docker ps |grep mariadb| awk '{print $$1}') /bin/bash
+debwp:
+	@docker exec -it $$(docker ps |grep wordpress| awk '{print $$1}') /bin/bash
+
 re : rma up
+
 help:
 	@echo "Possible targets"
 	@echo "up	   :build and run all services"
@@ -65,6 +65,7 @@ help:
 	@echo "rmi         :Remove all images"
 	@echo "init-docker :start docker service"
 	@echo "print       :Print images ID"
-	@echo "debug       :Docker exec -it (container) /bin/bash"
+	@echo "debmaria    :Docker exec -it (container) /bin/bash"
+	@echo "debwp       :Docker exec -it (container) /bin/bash"
 
-.PHONY: up down start stop stat rma rm rmi rmv init_docker print debug help re mariadb wordpress clean
+.PHONY: up down start stop stat rma rm rmi rmv init_docker print help re debmaria debwp clean
