@@ -11,7 +11,7 @@ RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private
 COPY nginx.conf /etc/nginx/nginx.conf
 
 RUN mkdir -p ${NGINX_PATH}/web_page
-COPY web/* ${NGINX_PATH}
+COPY web/* ${NGINX_PATH}/web_page
 RUN chmod -R 755 ${NGINX_PATH}/web_page
 
 EXPOSE 443 
