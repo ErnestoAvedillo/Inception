@@ -47,10 +47,9 @@ init_docker:
 clean:
 	docker system prune -a
 mariadb:
-	docker ps |grep mariadb| awk '{print $$1}'
 	docker exec -it $$(docker ps |grep mariadb| awk '{print $$1}') /bin/bash
 wordpress:
-	docker exec -it $(docker ps |grep wordpress| awk '{print $1}') /bin/bash
+	docker exec -it $$(docker ps |grep wordpress| awk '{print $$1}') /bin/bash
 print:
 	@echo "Variable IMAGES= "$(IMAGES)
 	@echo "Variable CONTAINERS =" $(CONTAINERS)
@@ -73,4 +72,4 @@ help:
 	@echo "print       :Print images ID"
 	@echo "debug       :Docker exec -it (container) /bin/bash"
 
-.PHONY: up down start stop stat rma rm rmi rmv init_docker print debug help re
+.PHONY: up down start stop stat rma rm rmi rmv init_docker print debug help re mariadb wordpress clean

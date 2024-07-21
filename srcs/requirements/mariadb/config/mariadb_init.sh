@@ -1,17 +1,31 @@
 #!/bin/bash
+
 # Ensure the data directory exists
 if [ ! -d "/var/lib/mysql/mysql" ]; then
     echo "Initializing MariaDB data directory..."
     mysql_install_db --user=mysql --datadir=/var/lib/mysql
 fi
-# sleep 3
-service mariadb start;
 
 # Start MariaDB server
-#echo "Starting MariaDB..."
-#exec mysqld
-mysql --verbose -u ${MARIADB_ROOT} -e "ALTER USER '${MARIADB_ROOT}'@'localhost' IDENTIFIED BY '${MARIADB_ROOT_PASSWORD}'; FLUSH PRIVILEGES;"
+service mariadb start;
 
+# Check if the root password is set
+function check_root_password {
+    mysql -u $MARIADB_ROOT -p$MARIADB_ROOT_PASSWORD -e "EXIT" 2>/dev/null
+    return $?
+}
+
+
+# Check if the root password is set and if not set it
+if check_root_password; then
+    echo "La contraseña para el usuario root está configurada."
+    mysql -u $MARIADB_ROOT -p$MARIADB_ROOT_PASSWORD
+else
+    echo "No se necesita contraseña para el usuario root."
+	mysql --verbose -u ${MARIADB_ROOT} -e "ALTER USER '${MARIADB_ROOT}'@'localhost' IDENTIFIED BY '${MARIADB_ROOT_PASSWORD}'; FLUSH PRIVILEGES;"
+fi
+
+# Create the database and user
 DB_EXISTS=$(mysql -u ${MARIADB_ROOT} -p${MARIADB_ROOT_PASSWORD} -e "SHOW DATABASES LIKE '${MARIADB_NAME}';" | grep ${MARIADB_NAME})
 
 if [ -n "$DB_EXISTS" ]; then
