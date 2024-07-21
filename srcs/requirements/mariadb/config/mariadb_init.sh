@@ -9,7 +9,7 @@ service mariadb start;
 
 # Start MariaDB server
 #echo "Starting MariaDB..."
-exec mysqld
+#exec mysqld
 mysql --verbose -u ${MARIADB_ROOT} -e "ALTER USER '${MARIADB_ROOT}'@'localhost' IDENTIFIED BY '${MARIADB_ROOT_PASSWORD}'; FLUSH PRIVILEGES;"
 
 DB_EXISTS=$(mysql -u ${MARIADB_ROOT} -p${MARIADB_ROOT_PASSWORD} -e "SHOW DATABASES LIKE '${MARIADB_DB_NAME}';" | grep ${MARIADB_DB_NAME})
