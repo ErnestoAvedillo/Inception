@@ -38,6 +38,6 @@ else
 	mysql  --verbose -u ${MARIADB_ROOT} -p${MARIADB_ROOT_PASSWORD} -e "GRANT ALL ON ${MARIADB_NAME}.* TO '${MARIADB_USER}'@'%' IDENTIFIED BY '${MARIADB_USER_PASSWORD}' WITH GRANT OPTION; FLUSH PRIVILEGES;"
 fi
 
-mysqladmin -u ${MARIADB_ROOT} --password=${MARIADB_ROOT_PASSWORD} shutdown
+#mysqladmin -u ${MARIADB_ROOT} --password=${MARIADB_ROOT_PASSWORD} shutdown
 
 #mysqld
