@@ -90,6 +90,6 @@ volumes:
       o: bind
       type: none 
 networks:
-  inception:
+  eavedill_inception:
     driver: bridge
     name: eavedill_inception
