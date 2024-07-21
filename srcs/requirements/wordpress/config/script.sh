@@ -25,4 +25,3 @@ else
 	wp theme activate twentytwentytwo --path="${WP_PATH}" --allow-root
 fi
 /usr/sbin/php-fpm7.4 -F
-
