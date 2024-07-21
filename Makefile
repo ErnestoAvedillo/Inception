@@ -5,14 +5,7 @@ CONTAINERS= $$(docker ps -aq)
 VOLUMES= $$(docker volume ls -q)
 
 up:
-	@cat srcs/var.env
-	@docker-compose -f ./srcs/docker-compose.yaml --env-file ./srcs/var.env up -d
-	@echo "-------docker ps---------"
-	@docker ps -a
-	@echo "-------images---------"
-	@docker images -a
-	@echo "-------volumes---------"
-	@docker volume ls
+	@docker-compose -q -f ./srcs/docker-compose.yaml --env-file ./srcs/var.env up -d
 
 down:
 	docker-compose -f ./srcs/docker-compose.yaml --env-file ./srcs/var.env down
