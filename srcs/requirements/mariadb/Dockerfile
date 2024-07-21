@@ -3,7 +3,7 @@ FROM debian:11-slim
 ARG MARIADB_PATH
 #
 RUN apt-get -qq update -y 
-RUN apt-get -qq install mariadb-server -y
+RUN apt-get -qq install mariadb-server vim -y
 #
 ## Ensure the MariaDB directories exist with proper permissions
 ########RUN mkdir -p /var/lib/mysql && chown mysql:mysql /var/lib/mysql && chmod -R 755 /var/lib/mysql

@@ -19,7 +19,7 @@ function check_root_password {
 # Check if the root password is set and if not set it
 if check_root_password; then
     echo "La contraseña para el usuario root está configurada."
-    mysql -u $MARIADB_ROOT -p$MARIADB_ROOT_PASSWORD
+    #mysql -u $MARIADB_ROOT -p$MARIADB_ROOT_PASSWORD
 else
     echo "No se necesita contraseña para el usuario root."
 	mysql --verbose -u ${MARIADB_ROOT} -e "ALTER USER '${MARIADB_ROOT}'@'localhost' IDENTIFIED BY '${MARIADB_ROOT_PASSWORD}'; FLUSH PRIVILEGES;"
