@@ -13,7 +13,7 @@ RUN chmod +x wp-cli.phar
 RUN mv wp-cli.phar /usr/local/bin/wp
 
 RUN wget https://wordpress.org/latest.tar.gz
-RUN tar -xf latest.tar.gz --quiet
+RUN tar -xf latest.tar.gz
 
 RUN mkdir -p ${WP_PATH}
 RUN mv ./wordpress/* ${WP_PATH}
