@@ -12,7 +12,7 @@ service mariadb start;
 #exec mysqld
 mysql --verbose -u ${MARIADB_ROOT} -e "ALTER USER '${MARIADB_ROOT}'@'localhost' IDENTIFIED BY '${MARIADB_ROOT_PASSWORD}'; FLUSH PRIVILEGES;"
 
-DB_EXISTS=$(mysql -u ${MARIADB_ROOT} -p${MARIADB_ROOT_PASSWORD} -e "SHOW DATABASES LIKE '${MARIADB_DB_NAME}';" | grep ${MARIADB_DB_NAME})
+DB_EXISTS=$(mysql -u ${MARIADB_ROOT} -p${MARIADB_ROOT_PASSWORD} -e "SHOW DATABASES LIKE '${MARIADB_NAME}';" | grep ${MARIADB_NAME})
 
 if [ -n "$DB_EXISTS" ]; then
 	echo "Mariadb $MARIADB_DB_NAME database exists."
