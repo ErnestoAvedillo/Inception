@@ -2,7 +2,7 @@ FROM debian:11-slim
 
 ARG WP_PATH 
 
-RUN apt-get -qq update -y && apt-get install -y php-mysql php-fpm mariadb-server mariadb-client wget tar curl vim
+RUN apt-get -qq update -y && apt-get install -y php-mysql php7.4-fpm mariadb-server mariadb-client wget tar curl vim
 
 ########RUN mkdir -p ${WP_PATH}wordpress/
 
