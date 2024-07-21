@@ -18,7 +18,7 @@ services:
     volumes:
       - wordpress:$NGINX_PATH
     networks:
-      - inception
+      - eavedill_inception
   wordpress:
     container_name: wordpress
     image: "eavedill_wordpress"
@@ -50,7 +50,7 @@ services:
     volumes:
       - wordpress:$WP_PATH
     networks:
-      - inception
+      - eavedill_inception
   mariadb:
     container_name: mariadb
     image: "eavedill_mariadb"
@@ -72,7 +72,7 @@ services:
     volumes:
       - mariadb:$MARIADB_PATH
     networks:
-      - inception
+      - eavedill_inception
 
 volumes:
   wordpress:

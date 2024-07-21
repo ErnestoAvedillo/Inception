@@ -14,7 +14,7 @@ echo WP_USER_EMAIL=$WP_USER_EMAIL
 echo WP_USER_ROLE=$WP_USER_ROLE
 echo WP_USER_PASSWORD=$WP_USER_PASSWORD
 echo ****************************************************
-if [ -d ${WP_PATH}"wp-admin" ]; then
+if [ -d ${WP_PATH}"/wp-admin" ]; then
 	 echo "WordPress core is already downloaded"
 else
 	echo "WordPress Installing"
