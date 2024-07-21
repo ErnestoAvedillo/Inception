@@ -46,7 +46,11 @@ init_docker:
 
 clean:
 	docker system prune -a
-
+mariadb:
+	docker ps |grep mariadb| awk '{print $$1}'
+	docker exec -it $$(docker ps |grep mariadb| awk '{print $$1}') /bin/bash
+wordpress:
+	docker exec -it $(docker ps |grep wordpress| awk '{print $1}') /bin/bash
 print:
 	@echo "Variable IMAGES= "$(IMAGES)
 	@echo "Variable CONTAINERS =" $(CONTAINERS)
