@@ -16,7 +16,7 @@ RUN mv wp-cli.phar /usr/local/bin/wp
 #RUN tar -xf latest.tar.gz
 
 RUN mkdir -p ${WP_PATH}
-RUN mkdir -p /run/php
+RUN mkdir -p /run/php && chmod -R 777 /run/php && chown -R www-data:www-data /run/php
 #RUN mv ./wordpress/* ${WP_PATH}
 
 COPY config/wordpress.conf /etc/nginx/sites-available/wordpress.conf
@@ -32,5 +32,5 @@ COPY config/script.sh /tmp/
 
 RUN chmod +x /tmp/script.sh
 
-#CMD ["bash","-c", "while true; do sleep 3600; done"]
-ENTRYPOINT ["bash", "/tmp/script.sh"]
+CMD ["bash","-c", "while true; do sleep 3600; done"]
+#ENTRYPOINT ["bash", "/tmp/script.sh"]
