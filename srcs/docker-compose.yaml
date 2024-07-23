@@ -19,6 +19,8 @@ services:
       - wordpress:$NGINX_PATH
     networks:
       - eavedill_inception
+    depends_on:
+      - wordpress
   wordpress:
     container_name: wordpress
     image: "eavedill_wordpress"
@@ -51,6 +53,8 @@ services:
       - wordpress:$WP_PATH
     networks:
       - eavedill_inception
+      depends_on:
+        - mariadb
   mariadb:
     container_name: mariadb
     image: "eavedill_mariadb"
