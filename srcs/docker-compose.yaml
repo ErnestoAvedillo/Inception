@@ -53,7 +53,7 @@ services:
       - wordpress:$WP_PATH
     networks:
       - eavedill_inception
-      depends_on:
+    depends_on:
         - mariadb
   mariadb:
     container_name: mariadb
