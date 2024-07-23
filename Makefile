@@ -19,12 +19,12 @@ stop:
 	-@docker-compose -f ./srcs/docker-compose.yaml --env-file ./srcs/var.env stop
 
 stat: 
-	@echo "-------docker ps---------"
-	@docker ps -a
 	@echo "-------images---------"
 	@docker images -a
 	@echo "-------volumes---------"
 	@docker volume ls
+	@echo "-------docker ps---------"
+	@docker ps -a
 
 rma: stop rm rmi rmv
 rm:
