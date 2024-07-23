@@ -4,6 +4,8 @@
 #
 # See the examples of server my.cnf files in /usr/share/mysql/
 #
+[client]
+socket = /run/mysqld/mysqld.sock
 
 # this is read by the standalone daemon and embedded servers
 [server]
