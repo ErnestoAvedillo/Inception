@@ -4,7 +4,7 @@ ARG MARIADB_PATH
 #
 RUN apt-get -qq update -y 
 RUN apt-get -qq install apt-file -y
-RUN apt-file update -qq -y
+RUN apt-file update -y
 RUN apt-get -qq install mariadb-server vim -y
 #
 ## Ensure the MariaDB directories exist with proper permissions
