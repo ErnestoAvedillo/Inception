@@ -4,7 +4,7 @@ ARG WP_PATH
 
 RUN apt-get -qq update -y
 RUN apt-get -qq install apt-file -y
-RUN apt-file update -y
+RUN apt-file update
 
 RUN apt-get -qq install -y php-mysql php7.4-fpm mariadb-server mariadb-client wget tar curl vim
 
