@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   nginx:
-    container_name: nginx_eavedill
+    container_name: nginx
     image: "eavedill_nginx"
     environment:
       - NGINX_PATH=$NGINX_PATH
@@ -20,9 +20,9 @@ services:
     networks:
       - eavedill_inception
     depends_on:
-      - wordpress_eavedill
+      - wordpress
   wordpress:
-    container_name: wordpress_eavedill
+    container_name: wordpress
     image: "eavedill_wordpress"
     environment:
       - WP_PATH=$WP_PATH
@@ -54,9 +54,9 @@ services:
     networks:
       - eavedill_inception
     depends_on:
-        - mariadb_eavedill
+        - mariadb
   mariadb:
-    container_name: mariadb_eavedill
+    container_name: mariadb
     image: "eavedill_mariadb"
     environment:
       - MARIADB_PATH=$MARIADB_PATH
