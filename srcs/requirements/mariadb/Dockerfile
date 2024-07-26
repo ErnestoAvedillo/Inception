@@ -23,6 +23,6 @@ RUN chown mysql:mysql /run/mysqld && chmod -R 755 /run/mysqld
 #
 EXPOSE 3306
 
-#CMD ["/var/run/mysqld/mariadb_init.sh"]
+CMD ["/var/run/mysqld/mariadb_init.sh"]
 
-ENTRYPOINT [ "bash", "-c", "while true; do sleep 3306; done"]
+#ENTRYPOINT [ "bash", "-c", "while true; do sleep 3306; done"]
