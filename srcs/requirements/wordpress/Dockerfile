@@ -16,16 +16,11 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
 RUN chmod +x wp-cli.phar
 RUN mv wp-cli.phar /usr/local/bin/wp
 
-#RUN wget https://wordpress.org/latest.tar.gz
-#RUN tar -xf latest.tar.gz
-
 RUN mkdir -p ${WP_PATH}
 RUN mkdir -p /run/php && chmod -R 777 /run/php && chown -R www-data:www-data /run/php
-#RUN mv ./wordpress/* ${WP_PATH}
 
 COPY config/wordpress.conf /etc/nginx/sites-available/wordpress.conf
 COPY config/www.conf /etc/php/7.4/fpm/pool.d/www.conf
-#COPY config/wp-config.php ${WP_PATH}
 
 WORKDIR ${WP_PATH}
 
@@ -39,4 +34,3 @@ RUN chmod +x /tmp/script.sh
 
 #CMD ["bash","-c", "while true; do sleep 3600; done"]
 ENTRYPOINT ["bash", "/tmp/script.sh"]
-#https://github.com/josephcheel/42-Inception.git

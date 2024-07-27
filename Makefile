@@ -7,16 +7,16 @@ VOLUMES= $$(docker volume ls -q)
 up:
 	-@mkdir -p $(HOME)/data/wordpress
 	-@mkdir -p $(HOME)/data/mariadb
-	-@docker-compose -f ./srcs/docker-compose.yaml --env-file ./srcs/var.env up -d --remove-orphans --quiet-pull --build
+	-@docker-compose -f ./srcs/docker-compose.yaml --env-file ./srcs/.env up -d --remove-orphans --quiet-pull --build
 
 down:
-	-@docker-compose -f ./srcs/docker-compose.yaml --env-file ./srcs/var.env down
+	-@docker-compose -f ./srcs/docker-compose.yaml --env-file ./srcs/.env down
 
 start:
-	-@docker-compose -f ./srcs/docker-compose.yaml --env-file ./srcs/var.env start
+	-@docker-compose -f ./srcs/docker-compose.yaml --env-file ./srcs/.env start
 
 stop:
-	-@docker-compose -f ./srcs/docker-compose.yaml --env-file ./srcs/var.env stop
+	-@docker-compose -f ./srcs/docker-compose.yaml --env-file ./srcs/.env stop
 
 stat: 
 	@echo "-------images---------"
