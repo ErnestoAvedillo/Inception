@@ -47,10 +47,12 @@ print:
 	@echo "Variable CONTAINERS =" $(CONTAINERS)
 	@echo "Variable VOLUMES =" $(VOLUMES)
 
-debmaria:
+debma:
 	@docker exec -it $$(docker ps |grep mariadb| awk '{print $$1}') /bin/bash
 debwp:
 	@docker exec -it $$(docker ps |grep wordpress| awk '{print $$1}') /bin/bash
+debng:
+	@docker exec -it $$(docker ps |grep nginx| awk '{print $$1}') /bin/bash
 
 re : rma up
 
