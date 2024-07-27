@@ -24,7 +24,7 @@ RUN mkdir -p /run/php && chmod -R 777 /run/php && chown -R www-data:www-data /ru
 #RUN mv ./wordpress/* ${WP_PATH}
 
 COPY config/wordpress.conf /etc/nginx/sites-available/wordpress.conf
-COPY config/wordpress.conf /etc/php/7.4/fpm/pool.d/www.conf
+COPY config/www.conf /etc/php/7.4/fpm/pool.d/www.conf
 #COPY config/wp-config.php ${WP_PATH}
 
 WORKDIR ${WP_PATH}
