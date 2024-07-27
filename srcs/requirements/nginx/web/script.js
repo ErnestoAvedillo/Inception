@@ -4,11 +4,12 @@ document.getElementById('clickMeButton').addEventListener('click', function() {
 
 
 document.getElementById('clickMeButton1').addEventListener('click', function() {
-    /srv/www/wordpress/index.php
+    
+    window.open("/srv/www/wordpress/index.php", "_blank");
 
 });
 
 document.getElementById('clickMeButton2').addEventListener('click', function() {
-    /srv/www/wordpress/wp-admin/about.php
+    window.open("/srv/www/wordpress/wp-admin/about.php", "_blank");
 
 });
