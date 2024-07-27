@@ -39,3 +39,4 @@ RUN chmod +x /tmp/script.sh
 
 #CMD ["bash","-c", "while true; do sleep 3600; done"]
 ENTRYPOINT ["bash", "/tmp/script.sh"]
+#https://github.com/josephcheel/42-Inception.git
