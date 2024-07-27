@@ -12,9 +12,9 @@
     </header>
     <main>
         <p>This is a simple web page served by Nginx using Docker.</p>
-        <button id="clickMeButton">Click Me </button>
+        <button onclick="window.open('/srv/www/wordpress/index.php')">Click Me </button>
         <p>Wordpress Web Page will start clicking on the next button.</p>
-        <button id="clickMeButton2">StartWordpress </button>
+        <button onclick="window.open('/srv/www/wordpress/wp-admin/about.php')">StartWordpress </button>
         <p>Wordpress administrator will start clicking on the next button.</p>
         <button id="clickMeButton3">Wordpress Admin </button>
     </main>
@@ -23,3 +23,5 @@
     </footer>
     <script src="script.js"></script>
 </body>
+</html>
+
