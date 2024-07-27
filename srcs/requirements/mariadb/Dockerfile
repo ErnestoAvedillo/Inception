@@ -8,7 +8,7 @@ RUN apt-file update
 RUN apt-get -qq install mariadb-server vim -y
 #
 ## Ensure the MariaDB directories exist with proper permissions
-########RUN mkdir -p /var/lib/mysql && chown mysql:mysql /var/lib/mysql && chmod -R 755 /var/lib/mysql
+RUN echo "MARIADB_PATH: ${MARIADB_PATH}"
 RUN mkdir -p ${MARIADB_PATH} 
 RUN chmod -R 777 ${MARIADB_PATH} 
 RUN chown -R mysql:mysql ${MARIADB_PATH}
